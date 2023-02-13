@@ -1,21 +1,27 @@
 name: "PR Title Checker"
 on:
   pull_request_target:
+    branches: [ main ]
     types:
-      - opened
-      - edited
-      - synchronize
-      - labeled
-      - unlabeled
-      - closed
+    - opened
+    - edited
+    - synchronize
+    - labeled
+    - unlabeled
+    - closed
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "run pr title-checker"
-      - uses: thehanimo/pr-title-checker@v1.3.6
-        with:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          pass_on_octokit_error: false
-          configuration_path: ".github/workflows/pr-title-checker-config.json"
+    - run: echo "This PR was approved"
+    - name: Check for Resolves / Fixes
+      uses: gsactions/commit-message-checker@v2
+      with:
+        pattern: '^.+\n.*foo.*$'
+        error: 'miss foo'
+    - uses: thehanimo/pr-title-checker@v1.3.6
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        pass_on_octokit_error: false
+        configuration_path: ".github/workflows/pr-title-checker-config.json"
