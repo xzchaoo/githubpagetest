@@ -7,11 +7,13 @@ on:
       - synchronize
       - labeled
       - unlabeled
+      - closed
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
+      - run: echo "run pr title-checker"
       - uses: thehanimo/pr-title-checker@v1.3.6
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
