@@ -15,4 +15,4 @@ jobs:
         uname -a
         free -m
         cat /proc/cpuinfo
-        echo ci1
+        ps aux
