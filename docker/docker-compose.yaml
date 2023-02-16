@@ -1,14 +1,16 @@
-name: "x-example"
+version: "3.8"
+
+volumes:
+  test_volume: {}
 
 services:
-  mysql:
-    image: mysql:8
-    environment:
-      MYSQL_ROOT_PASSWORD: test
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
-      MYSQL_DATABASE: test
-    healthcheck:
-      test: mysql -utest -ptest -Dtest
-      interval: 1s
-      retries: 300
+  helloworld:
+    image: hello-world
+    volumes:
+    - test_volume:/test:Z
+  helloworld2:
+    profiles: [profile-1]
+    image: hello-world
+  helloworld3:
+    profiles: [profile-2]
+    image: hello-world
