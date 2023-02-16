@@ -1,0 +1,10 @@
+name: "ci1"
+on:
+  workflow_dispatch: {}
+
+jobs:
+  ci1:
+    runs-on: ubuntu-latest
+    steps:
+    - name: ci1
+      run: echo ci1
