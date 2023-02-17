@@ -5,6 +5,16 @@ on:
 jobs:
   ci1:
     runs-on: ubuntu-latest
+    # https://docs.github.com/zh/actions/using-workflows/workflow-syntax-for-github-actions#jobsjob_idservices
+    services:
+      redis:
+        image: redis
+      mongo:
+        image: mongo:5
+        env:
+          MONGO_INITDB_ROOT_USERNAME: test
+          MONGO_INITDB_ROOT_PASSWORD: test
+          MONGO_INITDB_DATABASE: test
     steps:
     - uses: actions/checkout@v3
     - uses: isbang/compose-action@v1.4.1
