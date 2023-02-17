@@ -12,6 +12,8 @@ jobs:
         compose-file: "./docker/docker-compose.yaml"
     - name: ci1
       run: |
+        docker version
+        docker-compose version
         uname -a
         free -m
         cat /proc/cpuinfo
